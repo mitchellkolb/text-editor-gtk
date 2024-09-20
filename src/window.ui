@@ -10,6 +10,12 @@
       <object class="AdwToolbarView">
         <child type="top">
           <object class="AdwHeaderBar" id="header_bar">
+            <child type="start">
+              <object class="GtkButton" id="open_button">
+                <property name="label">Open</property>
+                <property name="action-name">win.open</property>
+              </object>
+            </child>
             <child type="end">
               <object class="GtkMenuButton">
                 <property name="primary">True</property>
@@ -24,10 +30,10 @@
           <object class="GtkScrolledWindow">
             <property name="hexpand">true</property>
             <property name="vexpand">true</property>
-            <property name="margin-top">6</property>
-            <property name="margin-bottom">6</property>
-            <property name="margin-start">6</property>
-            <property name="margin-end">6</property>
+            <property name="margin-top">10</property>
+            <property name="margin-bottom">10</property>
+            <property name="margin-start">10</property>
+            <property name="margin-end">10</property>
             <property name="child">
               <object class="GtkTextView" id="main_text_view">
                 <property name="monospace">true</property>
