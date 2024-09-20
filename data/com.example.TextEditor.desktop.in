@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=text-editor-gtk
+Exec=text-editor-gtk
+Icon=com.example.TextEditor
+Terminal=false
+Type=Application
+Categories=GTK;
+StartupNotify=true

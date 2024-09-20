@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="text-editor-gtk">
+	<schema id="com.example.TextEditor" path="/com/example/TextEditor/">
+	</schema>
+</schemalist>

@@ -1,0 +1,6 @@
+data/com.example.TextEditor.desktop.in
+data/com.example.TextEditor.metainfo.xml.in
+data/com.example.TextEditor.gschema.xml
+src/main.py
+src/window.py
+src/window.ui
