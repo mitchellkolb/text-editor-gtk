@@ -16,6 +16,10 @@ class TextEditorGtkWindow(Adw.ApplicationWindow):
         open_action.connect("activate", self.open_file_dialog)
         self.add_action(open_action)
 
+        save_action = Gio.SimpleAction(name="save-as")
+        save_action.connect("activate", self.save_file_dialog)
+        self.add_action(save_action)
+
     def open_file_dialog(self, action, _):
         self._native = Gtk.FileChooserNative(
             title="Open File",
@@ -54,3 +58,5 @@ class TextEditorGtkWindow(Adw.ApplicationWindow):
         start = buffer.get_start_iter()
         buffer.place_cursor(start)
 
+    def save_file_dialog(self, action, _):
+        print(f"saving")
