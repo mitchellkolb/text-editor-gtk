@@ -1,6 +1,6 @@
 
 
-from gi.repository import Adw, Gio, Gtk
+from gi.repository import Adw, Gio, Gtk, GLib
 
 @Gtk.Template(resource_path='/com/example/TextEditor/window.ui')
 class TextEditorGtkWindow(Adw.ApplicationWindow):
@@ -59,4 +59,42 @@ class TextEditorGtkWindow(Adw.ApplicationWindow):
         buffer.place_cursor(start)
 
     def save_file_dialog(self, action, _):
-        print(f"saving")
+        self._native = Gtk.FileChooserNative(
+            title="Save File As",
+            transient_for=self,
+            action=Gtk.FileChooserAction.SAVE,
+            accept_label="_Save",
+            cancel_label="_Cancel",
+        )
+
+        self._native.connect("response", self.on_save_response)
+        self._native.show()
+
+    def on_save_response(self, dialog, response):
+        if response == Gtk.ResponseType.ACCEPT:
+            self.save_file(dialog.get_file())
+        self._native = None
+
+    def save_file(self, file):
+        buffer = self.main_text_view.get_buffer()
+        start = buffer.get_start_iter()
+        end = buffer.get_end_iter()
+        text = buffer.get_text(start, end, False)
+
+        if not text:
+            return
+
+        byte = GLib.Bytes.new(text.encode('utf-8'))
+        file.replace_contents_bytes_async(bytes, None, False, Gio.FileCreateFlags.NONE, None, self.save_file_complete)
+
+    def save_file_complete(self, file, result):
+        res = file.replace_contents_finish(result)
+        info = file.query_info("standard::display-name", Gio.FileQueryInfoFlags.NONE)
+
+        if info:
+            display_name = info.get_attribute_string("standard::display-name")
+        else:
+            display_name = file.get_basename()
+
+        if not res:
+            print(f"Unable to save {display_name}")
