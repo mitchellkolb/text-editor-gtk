@@ -34,4 +34,23 @@ class TextEditorGtkWindow(Adw.ApplicationWindow):
         self._native = None
 
     def open_file(self, file):
-        pass
+        file.load_contents_async(None, self.open_file_complete)
+
+    def open_file_complete(self, file, result):
+        contents = file.load_contents_finish(result)
+        if not contents[0]:
+            path = file.peek_path()
+            print(f"Unable to open {path}: {contents[1]}")
+
+        try:
+            text = contents[1].decode('utf-8')
+        except UnicodeError as err:
+            path = file.peek_path()
+            print(f"Unable to open {path}: the file is not encoded properly")
+            return
+
+        buffer = self.main_text_view.get_buffer()
+        buffer.set_text(text)
+        start = buffer.get_start_iter()
+        buffer.place_cursor(start)
+
