@@ -12,6 +12,10 @@ class TextEditorGtkWindow(Adw.ApplicationWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+
+        self.default_title = "MK Text Editor"  # Save the default title
+        self.set_title(self.default_title)
+
         open_action = Gio.SimpleAction(name="open")
         open_action.connect("activate", self.open_file_dialog)
         self.add_action(open_action)
@@ -58,6 +62,10 @@ class TextEditorGtkWindow(Adw.ApplicationWindow):
         start = buffer.get_start_iter()
         buffer.place_cursor(start)
 
+        # Set the window title to the file name
+        display_name = file.get_basename()
+        self.set_title(f"{display_name} - {self.default_title}")
+
     def save_file_dialog(self, action, _):
         self._native = Gtk.FileChooserNative(
             title="Save File As",
@@ -84,7 +92,7 @@ class TextEditorGtkWindow(Adw.ApplicationWindow):
         if not text:
             return
 
-        byte = GLib.Bytes.new(text.encode('utf-8'))
+        bytes = GLib.Bytes.new(text.encode('utf-8'))
         file.replace_contents_bytes_async(bytes, None, False, Gio.FileCreateFlags.NONE, None, self.save_file_complete)
 
     def save_file_complete(self, file, result):

@@ -21,6 +21,7 @@ class TextEditorGtkApplication(Adw.Application):
         self.create_action('preferences', self.on_preferences_action)
 
         self.set_accels_for_action('win.open', ['<Ctrl>o'])
+        self.set_accels_for_action('win.save-as', ['<Ctrl>s'])
 
     def do_activate(self):
         """Called when the application is activated.
@@ -38,10 +39,10 @@ class TextEditorGtkApplication(Adw.Application):
         about = Adw.AboutWindow(transient_for=self.props.active_window,
                                 application_name='text-editor-gtk',
                                 application_icon='com.example.TextEditor',
-                                developer_name='chet',
+                                developer_name='Mitchell',
                                 version='0.1.0',
-                                developers=['chet'],
-                                copyright='© 2024 chet')
+                                developers=['Mitchell'],
+                                copyright='© 2024 Mitchell')
         about.present()
 
     def on_preferences_action(self, widget, _):
