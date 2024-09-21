@@ -17,4 +17,21 @@ class TextEditorGtkWindow(Adw.ApplicationWindow):
         self.add_action(open_action)
 
     def open_file_dialog(self, action, _):
+        self._native = Gtk.FileChooserNative(
+            title="Open File",
+            transient_for=self,
+            action=Gtk.FileChooserAction.OPEN,
+            accept_label="_Open",
+            cancel_label="_Cancel",
+        )
+
+        self._native.connect("response", self.on_open_response)
+        self._native.show()
+
+    def on_open_response(self, dialog, response):
+        if response == Gtk.ResponseType.ACCEPT:
+            self.open_file(dialog.get_file())
+        self._native = None
+
+    def open_file(self, file):
         pass
