@@ -24,6 +24,15 @@
 
 This is a Linux designed basic text editor. This text editor can open, save and edit files and create new files of any file type. The purpose of this project was to gain familiarity with using the GTK/PyGObject UI library. Additionally I learned how to develop this app in a specific file structure so when I start my next project I can publish it to Flathub as a Flatpak app.
 
+![editor-gif](resources/editor-gif.gif)
+
+<details>
+<summary style="color:#5087dd">Watch the Full Video Demo Here</summary>
+
+[![Full Video Demo Here](https://img.youtube.com/vi/L8SBFNDYORU/0.jpg)](https://www.youtube.com/watch?v=L8SBFNDYORU)
+
+</details>
+
 ---
 
 
