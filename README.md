@@ -29,7 +29,7 @@ This is a Linux designed basic text editor. This text editor can open, save and 
 <details>
 <summary style="color:#5087dd">Watch the Full Video Demo Here</summary>
 
-[![Full Video Demo Here](https://img.youtube.com/vi/L8SBFNDYORU/0.jpg)](https://www.youtube.com/watch?v=L8SBFNDYORU)
+[![Full Video Demo Here](https://img.youtube.com/vi/5pTsOadaAeM/0.jpg)](https://www.youtube.com/watch?v=5pTsOadaAeM)
 
 </details>
 
